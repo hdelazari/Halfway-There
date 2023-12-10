@@ -1,0 +1,163 @@
+\documentclass[a4paper,12pt,notitlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{indentfirst}
+\usepackage[margin=3cm]{geometry}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\S}{\mathbf{S}}
+
+\title{A esfera $\S^2$}
+\author{Hannah De Lázari}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	\section{A esfera como variedade}
+	Seja $\S^2=\{x\in\R^3;|x|=1\}$ a esfera em $\R^3$. Intuitivamente, sabemos que ela é uma superfície, e portanto é um objeto bidimensional, mas costumamos descrevê-la como um subconjunto de $\R^3$. Para evitar o uso desta dimensão adicional, e posteriormente generalizar e tratar outros espaços intrinsecamente, isto é, não como subconjunto de um $\R^n$, introduzimos a noção de variedade.
+	
+	Uma variedade é, intuitivamente, um espaço topológico localmente euclidiano, isto é, podemos tratar cada parte do espaço com coordenadas euclidianas. Mais precisamente, uma variedade topológica é um espaço topológico separado $M$ munido de uma família de cartas $(U_i,x_i)$, chamado de atlas, tal que
+	\begin{itemize}
+		\item[a)] Os $U_i$ formam uma cobertura aberta de $M$,
+		\item[b)] A aplicação $x_i$ é um homeomorfismo de $U_i$ em um espaço $\R^n$,
+		\item[c)] O espaço $M$ admite uma base contável de abertos (que geram sua topologia)
+	\end{itemize}
+	Para uma certa carta $(U,x)$ (chamada também de ``parametrização local"), notaremos $x^1,...,x^n$ as variáveis correspondentes em $\R^n$ (chamadas também de ``coordenadas locais"). Uma mudança de cartas na intercessão de duas cartas $x$ e $y$ será então uma função $x\to y$ que associa $(x^1,...,x^n)$ a $(y^1,...,y^n)$.
+	
+	Agora que temos a noção de variedade, podemos munir a esfera de uma estrutura de variedade. Para isto, utilizaremos as projeções estereográficas, que consistem em escolher um polo, e para cada ponto da esfera, considerar a reta que passa por este polo e este ponto, e identificar este ponto à intercessão desta reta com o plano equatorial da esfera. Claramente, o polo escolhido não tem imagem para esta projeção, portanto precisamos de pelo menos dois, então tomaremos os polos norte $N=(0,0,1)$ e sul $S=(0,0,-1)$. Os abertos serão portanto $U_N=\S^2-N$ e $U_S=\S^2-S$, e os homeomorfismos serão as projeções a partir de seus respectivos polos.
+	
+	Para a projeção norte, dado um ponto $p\in U_N$, onde notaremos $p=(p^1,p^2,p^3)$, a reta parametrizada que passa por $N$ e $p$ é definida por $r(t)=N+t(p-N)=(tp^1,tp^2,1+t(p^3-1)),\ t\in\R$. A intercessão da reta com o plano equatorial ocorre quando a terceira coordenada é 0, ou seja, $1+t(p^3-1)=0\implies t=\frac{1}{1-p^3}$, logo a reta intercepta o plano em $(\frac{p^1}{1-p^3},\frac{p^1}{1-p^3},0)$, e assim definimos o homeomorfismo da carta norte
+	\begin{equation}
+		x_N(p)=(\frac{p^1}{1-p^3},\frac{p^2}{1-p^3})
+	\end{equation}
+	Semelhantemente, temos que a carta sul é
+	\begin{equation}
+		x_S(p)=(\frac{p^1}{1+p^3},\frac{p^2}{1+p^3})
+	\end{equation}
+	
+	Além de saber as transformações das cartas, é importante também saber como mudar de uma carta para a outra, e para isto, é necessário saber as transformações inversas. Podemos, então, construir as inversas com o mesmo raciocínio.
+	
+	Dado um ponto $y=(y^1,y^2)$ do plano, tomamos a reta que passa por $(y^1,y^2,0)$ e $N$, dada por $r(t)=N+t(y-N)(ty^1,ty^2,1-t)$, e verificamos sua intercessão com a esfera, isto é, quando $|r(t)|=1$. Desta relação, temos
+	\begin{align*}
+		|r(t)|&=1\iff|r(t)|^2=1\\
+		|r(t)|^2&=(ty^1)^2+(ty^2)^2+(1-t)^2=1\\
+		\implies t&=0\text{ ou }t=\frac{2}{1+(y^1)^2+(y^2)^2}
+	\end{align*}
+	Como $t=0$ é associado a $N$, e $N\not\in U_N$, usamos o outro valor de $t$, para o qual a transformação inversa fica
+	\begin{equation}
+		x_N^{-1}(y)=\left(\frac{2y^1}{1+(y^1)^2+(y^2)^2},\frac{2y^2}{1+(y^1)^2+(y^2)^2},1-\frac{2}{1+(y^1)^2+(y^2)^2}\right)
+	\end{equation}
+	Da mesma forma, a transformação sul inversa é
+	\begin{equation}
+		x_S^{-1}(y)=\left(\frac{2y^1}{1+(y^1)^2+(y^2)^2},\frac{2y^2}{1+(y^1)^2+(y^2)^2},\frac{2}{1+(y^1)^2+(y^2)^2}-1\right)
+	\end{equation}
+	
+	Com isso, podemos mostrar que a equação de mudança de carta $x_{NS}=x_N\circ x_S^{-1}$ e $x_{SN}=x_S\circ x_N^{-1}$ são dados por
+	\begin{equation}
+		x_{NS}(y)=x_{SN}(y)=\left(\frac{y^1}{(y^1)^2+(y^2)^2},\frac{y^2}{(y^1)^2+(y^2)^2}\right)
+	\end{equation}
+	Se identificarmos $\R^2$ com $\C$ da forma natural $(y^1,y^2)\mapsto y^1+iy^2$, então a mudança de base fica 
+	\[x_{NS}(y)=\frac{y^1+iy^2}{(y^1)^2+(y^2)^2}=\frac{y}{|y|^2}=\frac{1}{\bar{y}},\]
+	ou seja, a mudança de base para $\S^2$ é completamente anti-holomorfa.
+	
+	Com isso, caracterizamos a esfera como uma variedade.
+	
+	\section{O plano tangente}
+	Agora, estudaremos o plano tangente a cada ponto da esfera, tentando achar uma forma de tratar estes planos intrinsecamente também. Dado um ponto $p\in \S^2$, chamaremos $T_p\S^2$ o plano tangente à esfera neste ponto. Podemos pensar em $T_p\S^2$ como um espaço vetorial com origem em $p$, e podemos pensar nos vetores de $T_p\S^2$ como os vetores tangentes (vetor derivada) em $p$ das curvas que passam por $p$.
+	
+	Utilizando este pensamento, podemo determinar vetores base do plano pensando em duas curvas que passam por $p$. Para escolher estas curvas, podemos pensar na imagem desse ponto na carta $(U,x)$, tomando $y=x(p)$. Assim, o podemos pensar no plano tangente em $y$, $T_y\R^2$, como os vetores tangentes em $y$ às curvas que passam por $y$, e gerado pelos vetores base dados pelas retas coordenadas que passam por $y$, $r_1(t)=y+t(1,0)=(y^1+t,y^2)$ e $r_2(t)=(y^1,y^2+t)$. Levando essas curvas para a esfera, a base de $T_p\S^2$ será então $\{u=\left.\frac{d}{dt}\right|_{t=0}x^{-1}(r_1(t)),v=\left.\frac{d}{dt}\right|_{t=0}x^{-1}(r_2(t)) \}$.
+	
+	Aqui, vale ver que, dado uma função $f:\R^2\to\R$, temos que
+	\begin{align*}
+	\left.\frac{d}{dt}\right|_{t=0}f(y^1+t,y^2)&=\left.\lim_{\Delta t\to 0}\frac{f(y^1+t+\Delta t,y^2)-f(y^1+t,y^2)}{\Delta t}\right|_{t=0}\\
+	&=\lim_{\Delta t\to 0}\frac{f(y^1+\Delta t,y^2)-f(y^1,y^2)}{\Delta t}\\
+	&=\frac{\partial}{\partial y^1}f(y^1,y^2)
+	\end{align*}
+	Aplicando isto coordenada à coordenada nos vetores base acima, temos que $T_p\S^2$ é gerado por $\{u=\frac{\partial}{\partial y^1}x^{-1}(y),v=\frac{\partial}{\partial y^2}x^{-1}(y) \}$.
+	
+	Aplicando o raciocínio para a carta sul da esfera, temos
+	\begin{align*}
+	u_S&=\frac{\partial}{\partial y^1}x_S^{-1}(y)\\
+	&=\frac{\partial}{\partial y^1}\left(\frac{2y^1}{1+(y^1)^2+(y^2)^2},\frac{2y^2}{1+(y^1)^2+(y^2)^2},\frac{2}{1+(y^1)^2+(y^2)^2}-1\right)\\
+	&=\left(\frac{2-2(y^1)^2+2(y^2)^2}{(1+(y^1)^2+(y^2)^2)^2},\frac{-4y^1y^2}{(1+(y^1)^2+(y^2)^2)^2},\frac{-4y^1}{(1+(y^1)^2+(y^2)^2)^2}\right)
+	\end{align*}
+	Lembrando que $y^1=\frac{p^1}{1+p^3}$ e $y^2=\frac{p^2}{1+p^3}$, temos:
+	\begin{equation}
+	u_S=(1+p^3-(p^1)^2,-p^1p^2,-p^1-p^1p^3)
+	\end{equation}
+	Similarmente,
+	\begin{equation}
+	v_S=(-p^1p^2,1+p^3-(p^2)^2,-p^2-p^2p^3)
+	\end{equation}
+	
+	Com o mesmo pensamento para a carta Norte, temos:
+	\begin{align}
+	u_N&=(1-p^3-(p^1)^2,-p^1p^2,p^1-p^1p^3)\\
+	v_N&=(-p^1p^2,1-p^3-(p^2)^2,p^2-p^2p^3)
+	\end{align}
+	
+	Sabemos que $(u_N,v_N)$ e $(u_S,v_S)$ são bases do mesmo espaço $T_p\S^2$, então podemos calcular a transformação mudança de base entre elas.
+	
+	Utilizando o software Mathematica para simplificar as expressões, achamos que
+	\begin{equation}
+		\begin{bmatrix}
+		u_S\\v_S
+		\end{bmatrix}=\begin{bmatrix}
+		\frac{(p^2)^2-(p^1)^2}{(1-p^3)^2} & \frac{-2p^1p^2}{(1-p^3)^2}\\
+		\frac{-2p^1p^2}{(1-p^3)^2} & \frac{(p^1)^2-(p^2)^2}{(1-p^3)^2}
+		\end{bmatrix}\begin{bmatrix}
+		u_N\\v_N
+		\end{bmatrix}
+	\end{equation}
+	
+	Uma outra forma de pensar na mudança de base, mais intrínseca, é trabalhando com a mudança diretamente nas cartas. Voltando para o pensamento que os vetores base são as derivadas das pre-imagens das retas coordenadas pela carta, podemos reprojetar estas curvas pela outra carta e vemos como sua derivada é escrita na projeção. Por exemplo, tínhamos que $u_S=\left.\frac{d}{dt}\right|_{t=0}x_S^{-1}(r_1(t))$, então teremos que na projeção sul, $u_S=\left.\frac{d}{dt}\right|_{t=0}x_N\circ x_S^{-1}(r_1(t))$. Pelo mesmo argumento que antes, vemos que isto é equivalente à $u_S=\frac{\partial}{\partial y_S^1}x_{NS}(y_S)=\frac{\partial}{\partial y_S^1}(x_{NS}^1(y_S),x_{NS}^2(y_S))$, onde o subscrito em $y_S$ é para diferenciar de que carta esta coordenada faz parte, já que estamos mudando de carta. Utilizando este mesmo pensamento para $v_S$ também, temos que
+	\begin{equation}
+		\begin{bmatrix}
+		u_S\\v_S
+		\end{bmatrix}=\begin{bmatrix}
+		\frac{\partial x_{NS}^1}{\partial y_S^1} & \frac{\partial x_{NS}^2}{\partial y_S^1}\\
+		\frac{\partial x_{NS}^1}{\partial y_S^2} & \frac{\partial x_{NS}^2}{\partial y_S^2}
+		\end{bmatrix}\begin{bmatrix}
+		u_N\\v_N
+		\end{bmatrix}
+	\end{equation}
+	É fácil reconhecer que esta matriz é a Jacobiana de $x_{NS}$, assim, temos que
+	\begin{equation}
+		\begin{bmatrix}
+		u_S\\v_S
+		\end{bmatrix}=\begin{bmatrix}
+		\frac{(y_S^2)^2-(y_S^1)^2}{((y_S^1)^2+(y_S^2)^2)^2} & \frac{-2y_S^1y_S^2}{((y_S^1)^2+(y_S^2)^2)^2}\\
+		\frac{-2y_S^1y_S^2}{((y_S^1)^2+(y_S^2)^2)^2} & \frac{(y_S^1)^2-(y_S^2)^2}{((y_S^1)^2+(y_S^2)^2)^2}
+		\end{bmatrix}\begin{bmatrix}
+		u_N\\v_N
+		\end{bmatrix}
+	\end{equation}
+	Mas agora temos a mudança de base para escrever a base $S$ com respeito a base $N$, mas as coordenadas ainda estão em $S$. Lembrando a mudança de coordenadas $y_N^i=\frac{y_S^i}{(y_S^1)^2+(y_S^2)^2}$, temos que
+	\begin{equation}
+		\begin{bmatrix}
+		u_S\\v_S
+		\end{bmatrix}=\begin{bmatrix}
+		(y_N^2)^2-(y_N^1)^2 & -2y_N^1y_N^2\\
+		-2y_N^1y_N^2 & (y_N^1)^2-(y_N^2)^2
+		\end{bmatrix}\begin{bmatrix}
+		u_N\\v_N
+		\end{bmatrix}
+	\end{equation}
+	Voltando para as coordenadas originais, em que $y^i_N=p^i/(1-p^3)$, chegamos que
+	\begin{equation}
+	\begin{bmatrix}
+	u_S\\v_S
+	\end{bmatrix}=\begin{bmatrix}
+	\frac{(p^2)^2-(p^1)^2}{(1-p^3)^2} & \frac{-2p^1p^2}{(1-p^3)^2}\\
+	\frac{-2p^1p^2}{(1-p^3)^2} & \frac{(p^1)^2-(p^2)^2}{(1-p^3)^2}
+	\end{bmatrix}\begin{bmatrix}
+	u_N\\v_N
+	\end{bmatrix}
+	\end{equation}
+	que é exatamente a matriz que achamos utilizando o outro método, mas com esse método só dependemos da equação de mudança de cartas, sendo muito mais útil para o caso geral.
+	
+	A estrutura que aparece quando consideramos a união disjunta de todos os planos tangentes à esfera associados a cada ponto é chamado de fibrado tangente da esfera, e denotado $T\S^2$.
+	
+\end{document}
