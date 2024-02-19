@@ -11,5 +11,9 @@ Further info on the objective and content of the blog will be added in time
 - Add more pages
 - Page creator/editor on site
     - Seamless integration with LaTeX
-- Account system for comments and restricted access
+- Login:
+    - Make login state persist
+    - Database for creating and storing multiple accounts
+    - Make login safe (criptography, https)
+    - Comment sections
 - Publish online!

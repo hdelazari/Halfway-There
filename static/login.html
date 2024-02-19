@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Halfway There</title>
-        <link href="style.css" rel="stylesheet">
+        <link href="../style.css" rel="stylesheet">
     </head>
     <body>  
         <div class="titlebar">
@@ -17,13 +17,13 @@
                 <a href="/login/"> Login </a>
             </div>
         </div>
-        
+
         <div class="content">
-            <p>Hi! Welcome to my blog project, made from scratch. It's still a work in progress, but I'd say we're <i>halfway there</i>. </p>
-
-            <p>In the meantime, you can see the <a href="/view/a_esfera">test page</a>, which was converted from LaTeX to MathML using <a href="https://math.nist.gov/~BMiller/LaTeXML/">LaTeXML</a>.</p>
-
-            <p>Now we have a standard header!</p>
+            <form method="POST" action="/login/">     
+                <label>User</label><input id="user" name="user" type="text" value="" /><br>
+                <label>Password</label><input id="user" name="pass" type="password" value="" />
+                <input type="submit" value="submit" />
+            </form>
         </div>
     </body>
 </html>
